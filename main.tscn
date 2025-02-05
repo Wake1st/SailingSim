@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhaoxxnjrb487"]
+
+[ext_resource type="PackedScene" uid="uid://ojn03lmm4c7v" path="res://level.tscn" id="1_lydy1"]
+
+[sub_resource type="Environment" id="Environment_0vuus"]
+background_mode = 2
+ambient_light_color = Color(0.994, 1, 0.97, 1)
+
+[node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0vuus")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.638123, 0.62434, -0.450553, -1.02336e-08, 0.585184, 0.8109, 0.769934, 0.517454, -0.373419, 0, 15.0489, 0)
+light_color = Color(0.994, 1, 0.97, 1)
+
+[node name="Level" parent="." instance=ExtResource("1_lydy1")]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ojn03lmm4c7v"]
+
+[ext_resource type="PackedScene" uid="uid://cjq22l0ukevnd" path="res://boat.tscn" id="1_b6gpj"]
+[ext_resource type="Script" path="res://level.gd" id="1_xn5u8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j7xa"]
+albedo_color = Color(0.113197, 0.1102, 0.29, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ih1c6"]
+material = SubResource("StandardMaterial3D_4j7xa")
+size = Vector2(200, 200)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_xn5u8")
+
+[node name="SeaMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ih1c6")
+
+[node name="Boat" parent="." instance=ExtResource("1_b6gpj")]

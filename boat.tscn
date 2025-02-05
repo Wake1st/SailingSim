@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjq22l0ukevnd"]
+
+[ext_resource type="Script" path="res://boat.gd" id="1_i3k2c"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_smgf4"]
+size = Vector3(2, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ybrwk"]
+size = Vector3(2, 3, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h6qli"]
+top_radius = 0.06
+bottom_radius = 0.06
+height = 4.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_bkxa1"]
+size = Vector2(2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yq470"]
+size = Vector3(0.1, 1, 1)
+
+[node name="Boat" type="Node3D"]
+script = ExtResource("1_i3k2c")
+
+[node name="BowMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.5)
+mesh = SubResource("PrismMesh_smgf4")
+
+[node name="HullMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1)
+mesh = SubResource("BoxMesh_ybrwk")
+skeleton = NodePath("../BowMesh")
+
+[node name="Mast" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("CylinderMesh_h6qli")
+
+[node name="SailRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="SailMesh" type="MeshInstance3D" parent="SailRoot"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, 1)
+mesh = SubResource("QuadMesh_bkxa1")
+skeleton = NodePath("../../Mast")
+
+[node name="SailMeshRev" type="MeshInstance3D" parent="SailRoot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.5, 1)
+mesh = SubResource("QuadMesh_bkxa1")
+skeleton = NodePath("../../Mast")
+
+[node name="RudderRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+
+[node name="RudderMesh" type="MeshInstance3D" parent="RudderRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247826, 0.52527)
+mesh = SubResource("BoxMesh_yq470")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.481983, 0.876181, 0, -0.876181, 0.481983, 0, 7.71814, 4.29768)
