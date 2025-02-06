@@ -2,7 +2,8 @@ class_name Boat
 extends Node3D
 
 const MAX_RUDDER_ANGLE: float = PI/4
-const WIND_LOSS_ANGLE: float = PI*3/4
+const MAX_SAIL_ANGLE: float = PI/2
+const WIND_LOSS_ANGLE: float = PI*5/6
 
 @export_category("Control Surfaces")
 @export var rudderRateOfChange: float = 1.4
@@ -16,7 +17,7 @@ const WIND_LOSS_ANGLE: float = PI*3/4
 @onready var sailRoot = %SailRoot
 
 var currentRudderAngle: float = 0
-var currentSailVector: Vector2 = Vector2.UP
+var currentSailAngle: float = 0
 
 var windProjection: float
 
@@ -32,13 +33,13 @@ func _physics_process(delta: float) -> void:
 	input_processing(delta)
 	kinematics(delta)
 
-#region Inputs
+#region Input Handling
 func input_processing(delta: float) -> void:
-	var sailInput = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
+	var sailInput = Input.get_action_strength("sail_right") - Input.get_action_strength("sail_left")
 	var rudderInput = Input.get_action_strength("rudder_right") - Input.get_action_strength("rudder_left")
 	
-	if sailInput != Vector2.ZERO:
-		rotate_sail(delta * sailRateOfChange, sailInput)
+	if sailInput != 0.0:
+		rotate_sail(sailInput * delta * sailRateOfChange)
 	
 	if rudderInput != 0.0:
 		rotate_rudder(rudderInput * delta * rudderRateOfChange)
@@ -53,14 +54,13 @@ func rotate_rudder(deltaAngle: float) -> void:
 		currentRudderAngle = newAngle
 
 
-func rotate_sail(delta: float, inputVector: Vector2) -> void:
-	if currentSailVector != inputVector:
-		var targetSailAngle = currentSailVector.angle_to(inputVector)
-		var deltaAngle = targetSailAngle * delta
+func rotate_sail(deltaAngle: float) -> void:
+	var newAngle = clampf(currentSailAngle + deltaAngle, -MAX_SAIL_ANGLE, MAX_SAIL_ANGLE)
+	if currentSailAngle != newAngle:
 		sailRoot.rotate_y(deltaAngle)
 		
 		# store the updated angle
-		currentSailVector = currentSailVector.rotated(deltaAngle)
+		currentSailAngle = newAngle
 #endregion
 
 #region kinematics
