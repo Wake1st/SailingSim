@@ -1,5 +1,5 @@
 class_name Boat
-extends Node3D
+extends RigidBody3D
 
 const MAX_RUDDER_ANGLE: float = PI/4
 const MAX_SAIL_ANGLE: float = PI/2
@@ -10,8 +10,8 @@ const WIND_LOSS_ANGLE: float = PI*5/6
 @export var sailRateOfChange: float = 1.8
 
 @export_category("Kinematics")
-@export var rudderEfficiency: float = 0.4
-@export var sailEfficiency: float = 1.2
+@export var rudderEfficiency: float = 48
+@export var sailEfficiency: float = 64
 
 @onready var rudderRoot = %RudderRoot
 @onready var sailRoot = %SailRoot
@@ -21,13 +21,13 @@ var currentSailAngle: float = 0
 
 var windProjection: float
 
-
+#region External Methods
 func calculate_wind_projection(wind: Vector3) -> void:
 	var clampedAngle = clampf(wind.angle_to(-basis.z), 0, WIND_LOSS_ANGLE)
 	var windEffectiveness = (WIND_LOSS_ANGLE - clampedAngle) / WIND_LOSS_ANGLE
-	var directProjection = -wind.project(sailRoot.global_basis.x).length()
+	var directProjection = wind.project(sailRoot.global_basis.x).length()
 	windProjection = directProjection * windEffectiveness
-
+#endregion
 
 func _physics_process(delta: float) -> void:
 	input_processing(delta)
@@ -66,8 +66,8 @@ func rotate_sail(deltaAngle: float) -> void:
 #region kinematics
 func kinematics(delta: float) -> void:
 	# rotate boat
-	rotate_y(-currentRudderAngle * delta * rudderEfficiency)
+	apply_torque(Vector3.DOWN * currentRudderAngle * delta * rudderEfficiency)
 	
 	# move forward
-	translate_object_local(Vector3(0.0, 0.0, windProjection) * delta * sailEfficiency)
+	apply_central_force(global_basis * Vector3.FORWARD * windProjection * delta * sailEfficiency)
 #endregion
