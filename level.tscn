@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ojn03lmm4c7v"]
+[gd_scene load_steps=7 format=3 uid="uid://ojn03lmm4c7v"]
 
 [ext_resource type="PackedScene" uid="uid://cjq22l0ukevnd" path="res://boat.tscn" id="1_b6gpj"]
 [ext_resource type="Script" path="res://level.gd" id="1_xn5u8"]
+[ext_resource type="PackedScene" uid="uid://bq8iluomepwt5" path="res://wind.tscn" id="2_acw76"]
+[ext_resource type="PackedScene" uid="uid://cg2qamtu348u0" path="res://buoy.tscn" id="4_ixryb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j7xa"]
 albedo_color = Color(0.113197, 0.1102, 0.29, 1)
@@ -16,4 +18,139 @@ script = ExtResource("1_xn5u8")
 [node name="SeaMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_ih1c6")
 
+[node name="Wind" parent="." instance=ExtResource("2_acw76")]
+directionZ = -1.0
+
 [node name="Boat" parent="." instance=ExtResource("1_b6gpj")]
+
+[node name="Buoy" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -9)
+
+[node name="Buoy2" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -9)
+
+[node name="Buoy3" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -27)
+
+[node name="Buoy4" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -27)
+
+[node name="Buoy5" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -53)
+
+[node name="Buoy6" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -53)
+
+[node name="Buoy17" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, -9)
+
+[node name="Buoy18" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87, 0, -9)
+
+[node name="Buoy19" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, -27)
+
+[node name="Buoy20" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87, 0, -27)
+
+[node name="Buoy21" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, -53)
+
+[node name="Buoy22" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87, 0, -53)
+
+[node name="Buoy23" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 55.0061)
+
+[node name="Buoy24" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87, 0, 55.0061)
+
+[node name="Buoy25" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 37.0061)
+
+[node name="Buoy26" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87, 0, 37.0061)
+
+[node name="Buoy27" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 11.0061)
+
+[node name="Buoy28" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87, 0, 11.0061)
+
+[node name="Buoy39" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 55.0061)
+
+[node name="Buoy40" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 55.0061)
+
+[node name="Buoy41" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 37.0061)
+
+[node name="Buoy42" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 37.0061)
+
+[node name="Buoy43" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 11.0061)
+
+[node name="Buoy44" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 11.0061)
+
+[node name="Buoy7" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.17157, 0, -71.8284)
+
+[node name="Buoy8" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -8.82843, 0, -66.1716)
+
+[node name="Buoy15" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -77.8284, 0, -71.8284)
+
+[node name="Buoy16" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -72.1716, 0, -66.1716)
+
+[node name="Buoy9" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -21, 0, -81)
+
+[node name="Buoy10" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -21, 0, -73)
+
+[node name="Buoy11" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -42, 0, -81)
+
+[node name="Buoy12" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -42, 0, -73)
+
+[node name="Buoy13" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -60, 0, -81)
+
+[node name="Buoy14" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -60, 0, -73)
+
+[node name="Buoy29" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0.707107, -4.37114e-08, 0.707107, -3.55271e-15, 1, 6.18172e-08, -0.707107, -4.37114e-08, 0.707107, -71.1716, 0, 66.1716)
+
+[node name="Buoy30" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0.707107, -4.37114e-08, 0.707107, -3.55271e-15, 1, 6.18172e-08, -0.707107, -4.37114e-08, 0.707107, -76.8284, 0, 71.8284)
+
+[node name="Buoy37" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(-0.707107, -4.37114e-08, 0.707107, -3.55271e-15, 1, 6.18172e-08, -0.707107, 4.37114e-08, -0.707107, -10.8284, 0, 66.1716)
+
+[node name="Buoy38" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(-0.707107, -4.37114e-08, 0.707107, -3.55271e-15, 1, 6.18172e-08, -0.707107, 4.37114e-08, -0.707107, -5.17157, 0, 71.8284)
+
+[node name="Buoy31" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -21, 0, 71)
+
+[node name="Buoy32" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -21, 0, 79)
+
+[node name="Buoy33" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -42, 0, 71)
+
+[node name="Buoy34" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -42, 0, 79)
+
+[node name="Buoy35" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -60, 0, 71)
+
+[node name="Buoy36" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -60, 0, 79)

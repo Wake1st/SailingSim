@@ -57,4 +57,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247826, 0.52527)
 mesh = SubResource("BoxMesh_yq470")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.481983, 0.876181, 0, -0.876181, 0.481983, 0, 7.71814, 4.29768)
+transform = Transform3D(1, 0, 0, 0, 0.942682, 0.333692, 0, -0.333692, 0.942682, 0, 5.54841, 7.78302)
+current = true
