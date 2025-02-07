@@ -1,6 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjq22l0ukevnd"]
+[gd_scene load_steps=10 format=3 uid="uid://cjq22l0ukevnd"]
 
 [ext_resource type="Script" path="res://boat.gd" id="1_i3k2c"]
+[ext_resource type="PackedScene" uid="uid://bpc6rcc3klp3o" path="res://camera.tscn" id="2_fiwv8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eoteh"]
+friction = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sekbj"]
+radius = 1.0
+height = 5.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_smgf4"]
 size = Vector3(2, 2, 1)
@@ -19,8 +27,20 @@ size = Vector2(2, 3)
 [sub_resource type="BoxMesh" id="BoxMesh_yq470"]
 size = Vector3(0.1, 1, 1)
 
-[node name="Boat" type="Node3D"]
+[node name="Boat" type="RigidBody3D"]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_eoteh")
+gravity_scale = 0.0
+can_sleep = false
+linear_damp = 0.6
+angular_damp = 0.6
 script = ExtResource("1_i3k2c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_sekbj")
 
 [node name="BowMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.5)
@@ -56,6 +76,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247826, 0.52527)
 mesh = SubResource("BoxMesh_yq470")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.942682, 0.333692, 0, -0.333692, 0.942682, 0, 5.54841, 7.78302)
-current = true
+[node name="Camera" parent="." instance=ExtResource("2_fiwv8")]
+rotationRate = 2.4
