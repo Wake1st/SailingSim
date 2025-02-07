@@ -27,6 +27,8 @@ A simulation to show how it _feels_ to sail a boat.
 ## Notes (thanks to Barrett Gaertner)
 
 - <https://sailing-blog.nauticed.org/wp-content/uploads/2017/09/CatamaranPolarPlot.png>
+- <https://www.wikihow.com/images/thumb/e/e5/Sail-a-Boat-Step-3-Version-3.jpg/v4-460px-Sail-a-Boat-Step-3-Version-3.jpg>
+- <https://upload.wikimedia.org/wikipedia/commons/0/0b/Sunfish_rigged_for_sailing.jpg>
 - sculling: when in no wind zone, can flap to "paddle" forward a bit or turn
 - jibe: when the sail flips sides of the boat really fast
 - windward: side of the wind
