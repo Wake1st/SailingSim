@@ -80,5 +80,5 @@ func kinematics(delta: float) -> void:
 	apply_torque(Vector3.DOWN * currentRudderAngle * delta * rudderEfficiency)
 	
 	# move forward
-	apply_central_force(global_basis * Vector3.FORWARD * windProjection * delta * sailEfficiency)
+	apply_central_force(-global_basis.z * windProjection * delta * sailEfficiency)
 #endregion
