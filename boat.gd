@@ -4,10 +4,12 @@ extends RigidBody3D
 const MAX_RUDDER_ANGLE: float = PI/4
 const MAX_SAIL_ANGLE: float = PI/2
 const WIND_LOSS_ANGLE: float = PI*5/6
+const RUDDER_DAMPED_FLOOR: float = 0.000001
 
 @export_category("Control Surfaces")
 @export var rudderRateOfChange: float = 1.4
 @export var sailRateOfChange: float = 1.8
+@export var rudderDampening: float = 0.8
 
 @export_category("Kinematics")
 @export var rudderEfficiency: float = 48
@@ -29,11 +31,13 @@ func calculate_wind_projection(wind: Vector3) -> void:
 	windProjection = directProjection * windEffectiveness
 #endregion
 
+#region Included Methods
 func _physics_process(delta: float) -> void:
 	input_processing(delta)
 	kinematics(delta)
+#endregion
 
-#region Input Handling
+#region Surface Controlling
 func input_processing(delta: float) -> void:
 	var sailInput = Input.get_action_strength("sail_right") - Input.get_action_strength("sail_left")
 	var rudderInput = Input.get_action_strength("rudder_right") - Input.get_action_strength("rudder_left")
@@ -43,27 +47,34 @@ func input_processing(delta: float) -> void:
 	
 	if rudderInput != 0.0:
 		rotate_rudder(rudderInput * delta * rudderRateOfChange)
+	else:
+		rotate_rudder(-currentRudderAngle * delta * rudderDampening)
 
 
 func rotate_rudder(deltaAngle: float) -> void:
-	var newAngle = clampf(currentRudderAngle + deltaAngle, -MAX_RUDDER_ANGLE, MAX_RUDDER_ANGLE)
-	if currentRudderAngle != newAngle:
-		rudderRoot.rotate_y(deltaAngle)
-		
-		# store the updated angle
-		currentRudderAngle = newAngle
+	var updatedAngle = currentRudderAngle + deltaAngle
+	if abs(updatedAngle) < RUDDER_DAMPED_FLOOR:
+		currentRudderAngle = 0
+		rudderRoot.rotation = Vector3.ZERO
+	else:
+		var clampedAngle = clampf(updatedAngle, -MAX_RUDDER_ANGLE, MAX_RUDDER_ANGLE)
+		if currentRudderAngle != clampedAngle:
+			rudderRoot.rotate_y(deltaAngle)
+			
+			# store the updated angle
+			currentRudderAngle = clampedAngle
 
 
 func rotate_sail(deltaAngle: float) -> void:
-	var newAngle = clampf(currentSailAngle + deltaAngle, -MAX_SAIL_ANGLE, MAX_SAIL_ANGLE)
-	if currentSailAngle != newAngle:
+	var clampedAngle = clampf(currentSailAngle + deltaAngle, -MAX_SAIL_ANGLE, MAX_SAIL_ANGLE)
+	if currentSailAngle != clampedAngle:
 		sailRoot.rotate_y(deltaAngle)
 		
 		# store the updated angle
-		currentSailAngle = newAngle
+		currentSailAngle = clampedAngle
 #endregion
 
-#region kinematics
+#region Kinematics
 func kinematics(delta: float) -> void:
 	# rotate boat
 	apply_torque(Vector3.DOWN * currentRudderAngle * delta * rudderEfficiency)

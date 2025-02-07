@@ -20,7 +20,7 @@ mesh = SubResource("PlaneMesh_ih1c6")
 
 [node name="Wind" parent="." instance=ExtResource("2_acw76")]
 directionZ = -1.0
-magnitude = 100.0
+magnitude = 18.0
 
 [node name="Boat" parent="." instance=ExtResource("1_b6gpj")]
 
