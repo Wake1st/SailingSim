@@ -77,4 +77,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247826, 0.52527)
 mesh = SubResource("BoxMesh_yq470")
 
 [node name="Camera" parent="." instance=ExtResource("2_fiwv8")]
-rotationRate = 2.4
