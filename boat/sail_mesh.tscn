@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://2jgpjk614sri"]
+
+[ext_resource type="Script" path="res://boat/sail_mesh.gd" id="1_ipgde"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_j8cax"]
+
+[node name="SailMesh" type="MeshInstance3D"]
+script = ExtResource("1_ipgde")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 1, 1)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7, 1, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.555762, -0.416043, 0.719748, 0.653816, 0.753472, -0.0693145, -0.513472, 0.509105, 0.690766, 11.7908, 0, 7.82416)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, -1)
+mesh = SubResource("QuadMesh_j8cax")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, -1, -1)
+mesh = SubResource("QuadMesh_j8cax")
