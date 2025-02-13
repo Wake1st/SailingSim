@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr4a6rw65h84o"]
+
+[ext_resource type="Script" path="res://dev/circle_path.gd" id="1_t1u2t"]
+
+[sub_resource type="Curve2D" id="Curve2D_hwcws"]
+_data = {
+"points": PackedVector2Array(-26.3912, 0, 25, 0, 0, -50, 0, -25, 0, 25, 50, 0, 25, 0, -25, 0, 0, 50, 0, 25, 0, -25, -50, 0, -25, 0, 0, -25, 0, -50)
+}
+point_count = 5
+
+[node name="SpeedCircle1" type="Path2D"]
+curve = SubResource("Curve2D_hwcws")
+script = ExtResource("1_t1u2t")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
+default_color = Color(0.11, 0.0099, 0.0382617, 1)

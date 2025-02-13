@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjq22l0ukevnd"]
+[gd_scene load_steps=11 format=3 uid="uid://cjq22l0ukevnd"]
 
 [ext_resource type="Script" path="res://boat.gd" id="1_i3k2c"]
 [ext_resource type="PackedScene" uid="uid://bpc6rcc3klp3o" path="res://camera.tscn" id="2_fiwv8"]
+[ext_resource type="PackedScene" uid="uid://caplqjcoksbvr" path="res://dev/wind_curve.tscn" id="3_pm528"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eoteh"]
-friction = 0.2
+friction = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sekbj"]
 radius = 1.0
@@ -34,8 +35,8 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_eoteh")
 gravity_scale = 0.0
 can_sleep = false
-linear_damp = 0.6
-angular_damp = 0.6
+linear_damp = 0.2
+angular_damp = 1.0
 script = ExtResource("1_i3k2c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -77,3 +78,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247826, 0.52527)
 mesh = SubResource("BoxMesh_yq470")
 
 [node name="Camera" parent="." instance=ExtResource("2_fiwv8")]
+
+[node name="WindCurve" parent="." instance=ExtResource("3_pm528")]
+visible = false

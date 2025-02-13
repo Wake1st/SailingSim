@@ -19,6 +19,7 @@ A simulation to show how it _feels_ to sail a boat.
 
 ### Stretch Goals
 
+- [x] applied realistic relative wind on boat
 - [ ] use real aerodynamic forces instead of velocities
 - [ ] tilt the boat
 - [ ] calculate buoyancy
