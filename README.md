@@ -13,8 +13,8 @@ A simulation to show how it _feels_ to sail a boat.
 - [x] kinematics
   - [x] pass sail projection into boat
   - [x] pass rudder into boat
-- [ ] animations
-  - [ ] animate wind direction and magnitude (flag)
+- [x] animations
+  - [x] animate wind direction and magnitude (flag)
   - [x] animate sail (parabolic bend of the mesh)
 
 ### Stretch Goals

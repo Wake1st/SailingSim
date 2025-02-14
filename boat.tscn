@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjq22l0ukevnd"]
+[gd_scene load_steps=12 format=3 uid="uid://cjq22l0ukevnd"]
 
 [ext_resource type="Script" path="res://boat.gd" id="1_i3k2c"]
 [ext_resource type="PackedScene" uid="uid://2jgpjk614sri" path="res://boat/sail_mesh.tscn" id="2_am1mg"]
 [ext_resource type="PackedScene" uid="uid://bpc6rcc3klp3o" path="res://camera.tscn" id="2_fiwv8"]
+[ext_resource type="PackedScene" uid="uid://b5rkdwcgw6he2" path="res://boat/flag_mesh.tscn" id="2_wkujm"]
 [ext_resource type="PackedScene" uid="uid://caplqjcoksbvr" path="res://dev/wind_curve.tscn" id="3_pm528"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eoteh"]
@@ -19,8 +20,8 @@ size = Vector3(2, 2, 1)
 size = Vector3(2, 3, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_h6qli"]
-top_radius = 0.06
-bottom_radius = 0.06
+top_radius = 0.05
+bottom_radius = 0.05
 height = 4.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_yq470"]
@@ -51,8 +52,12 @@ mesh = SubResource("BoxMesh_ybrwk")
 skeleton = NodePath("../BowMesh")
 
 [node name="Mast" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3658, 0)
 mesh = SubResource("CylinderMesh_h6qli")
+
+[node name="FlagMesh" parent="Mast" instance=ExtResource("2_wkujm")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="SailRoot" type="Node3D" parent="."]
 unique_name_in_owner = true

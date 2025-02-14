@@ -17,7 +17,9 @@ const RUDDER_DAMPED_FLOOR: float = 0.000001
 
 @onready var rudderRoot = %RudderRoot
 @onready var sailRoot = %SailRoot
+
 @onready var sailMesh = %SailMesh
+@onready var flag_mesh = %FlagMesh
 
 var currentRudderAngle: float = 0
 var currentSailAngle: float = 0
@@ -32,6 +34,7 @@ func calculate_wind_projection(wind: Vector3) -> void:
 	print("angle: %s\trelative wind: %s" % [-angle, windProjection])
 	
 	sailMesh.distort_sail(windProjection)
+	flag_mesh.distort_flag(wind)
 #endregion
 
 #region Included Methods
