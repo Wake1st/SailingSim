@@ -14,9 +14,24 @@ func get_max_speed(angle: float) -> float:
 	if angle <= MIN_ANGLE or angle >= MAX_ANGLE:
 		return 0
 	else:
-		var weight = inverse_lerp(MIN_ANGLE, MAX_ANGLE, angle)
-		speed.progress_ratio = weight
-		return speed.position.length() / MAGNIFIER
+		var intersection: Vector2
+		for i in curve.point_count - 1:
+			intersection = Geometry2D.line_intersects_line(
+				curve.get_point_position(i),
+				curve.get_point_position(i+1),
+				Vector2.ZERO,
+				Vector2.UP.rotated(angle)
+			)
+			
+			if intersection != null:
+				break
+		
+		speed.position = intersection
+		return intersection.length() / MAGNIFIER
+		
+		#var weight = inverse_lerp(MIN_ANGLE, MAX_ANGLE, angle)
+		#speed.progress_ratio = weight
+		#return speed.position.length() / MAGNIFIER
 
 
 func _ready():
@@ -30,6 +45,8 @@ func _process(_delta):
 		mirror_point(0)
 		mirror_point(1)
 		mirror_point(2)
+		
+		get_max_speed(PI/3)
 
 
 func mirror_point(index: int) -> void:
