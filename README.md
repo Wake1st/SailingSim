@@ -15,7 +15,7 @@ A simulation to show how it _feels_ to sail a boat.
   - [x] pass rudder into boat
 - [ ] animations
   - [ ] animate wind direction and magnitude (flag)
-  - [ ] animate sail (parabolic bend of the mesh)
+  - [x] animate sail (parabolic bend of the mesh)
 
 ### Stretch Goals
 

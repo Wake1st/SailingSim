@@ -17,6 +17,7 @@ const RUDDER_DAMPED_FLOOR: float = 0.000001
 
 @onready var rudderRoot = %RudderRoot
 @onready var sailRoot = %SailRoot
+@onready var sailMesh = %SailMesh
 
 var currentRudderAngle: float = 0
 var currentSailAngle: float = 0
@@ -30,11 +31,7 @@ func calculate_wind_projection(wind: Vector3) -> void:
 	windProjection = windCurve.get_max_speed(-angle) * wind.length()
 	print("angle: %s\trelative wind: %s" % [-angle, windProjection])
 	
-	
-	#var clampedAngle = clampf(wind.angle_to(-basis.z), 0, WIND_LOSS_ANGLE)
-	#var windEffectiveness = (WIND_LOSS_ANGLE - clampedAngle) / WIND_LOSS_ANGLE
-	#var directProjection = wind.project(sailRoot.global_basis.x).length()
-	#windProjection = directProjection * windEffectiveness
+	sailMesh.distort_sail(windProjection)
 #endregion
 
 #region Included Methods

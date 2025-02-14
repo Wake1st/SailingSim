@@ -58,6 +58,7 @@ mesh = SubResource("CylinderMesh_h6qli")
 unique_name_in_owner = true
 
 [node name="SailMesh" parent="SailRoot" instance=ExtResource("2_am1mg")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="RudderRoot" type="Node3D" parent="."]
