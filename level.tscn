@@ -20,7 +20,6 @@ mesh = SubResource("PlaneMesh_ih1c6")
 
 [node name="Wind" parent="." instance=ExtResource("2_acw76")]
 directionZ = -1.0
-magnitude = 100.0
 
 [node name="Boat" parent="." instance=ExtResource("1_b6gpj")]
 
@@ -1897,3 +1896,21 @@ transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 21, 0, -1466)
 
 [node name="Buoy624" parent="BuoyParent" instance=ExtResource("4_ixryb")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 21, 0, -1458)
+
+[node name="BegBuoy" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -500, 0, 0)
+
+[node name="BegBuoy2" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 500, 0, 0)
+
+[node name="BegBuoy3" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -500, 0, 2000)
+
+[node name="BegBuoy4" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 500, 0, 2000)
+
+[node name="BegBuoy5" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -500, 0, -2000)
+
+[node name="BegBuoy6" parent="." instance=ExtResource("4_ixryb")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 500, 0, -2000)

@@ -1,7 +1,7 @@
 class_name Camera
 extends Node3D
 
-@export var rotationRate: float = 1.0
+@export var rotationRate: float = 2.2
 
 
 func _physics_process(delta):

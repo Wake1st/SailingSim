@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://2jgpjk614sri"]
+
+[ext_resource type="Script" path="res://boat/sail_mesh.gd" id="1_ipgde"]
+[ext_resource type="Script" path="res://models/mesh_data.gd" id="2_vup6e"]
+
+[sub_resource type="Resource" id="Resource_p2wqk"]
+script = ExtResource("2_vup6e")
+total_height = 3.0
+total_width = 3.0
+vertical_segments = 30
+horizontal_segments = 30
+
+[node name="SailMesh" type="MeshInstance3D"]
+script = ExtResource("1_ipgde")
+mesh_data = SubResource("Resource_p2wqk")
