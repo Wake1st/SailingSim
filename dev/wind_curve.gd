@@ -2,36 +2,28 @@
 class_name WindCurve
 extends Path2D
 
-const MIN_ANGLE: float = PI/6
-const MAX_ANGLE: float = PI*2
 const MAGNIFIER: float = 100
+const WIND_MIN_ANGLE: float = PI/6
+const WIND_MAX_ANGLE: float = PI
 
 @onready var line = $Line2D
 @onready var speed = $Speed
 
 
-func get_max_speed(angle: float) -> float:
-	if angle <= MIN_ANGLE or angle >= MAX_ANGLE:
+func clamp_wind_angle(angle: float) -> float:
+	if angle < WIND_MIN_ANGLE:
 		return 0
 	else:
-		var intersection: Vector2
-		for i in curve.point_count - 1:
-			intersection = Geometry2D.line_intersects_line(
-				curve.get_point_position(i),
-				curve.get_point_position(i+1),
-				Vector2.ZERO,
-				Vector2.UP.rotated(angle)
-			)
-			
-			if intersection != null:
-				break
-		
-		speed.position = intersection
-		return intersection.length() / MAGNIFIER
-		
-		#var weight = inverse_lerp(MIN_ANGLE, MAX_ANGLE, angle)
-		#speed.progress_ratio = weight
-		#return speed.position.length() / MAGNIFIER
+		return angle
+
+
+func get_max_speed(angle: float = 0) -> float:
+	if 1.0471975511965 < angle and angle < 1.0471975511967:
+		return 0.0
+	
+	var wind_weight = inverse_lerp(WIND_MIN_ANGLE, WIND_MAX_ANGLE, angle)
+	speed.progress_ratio = wind_weight
+	return speed.position.length() / MAGNIFIER
 
 
 func _ready():

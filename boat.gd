@@ -15,26 +15,44 @@ const RUDDER_DAMPED_FLOOR: float = 0.000001
 @export var rudderEfficiency: float = 48
 @export var sailEfficiency: float = 64
 
-@onready var rudderRoot = %RudderRoot
-@onready var sailRoot = %SailRoot
+@onready var rudderRoot:Node3D = %RudderRoot
+@onready var sailRoot:Node3D = %SailRoot
 
-@onready var sailMesh = %SailMesh
-@onready var flag_mesh = %FlagMesh
+@onready var sailMesh:SailMesh = %SailMesh
+@onready var flagMesh:FlagMesh = %FlagMesh
 
 var currentRudderAngle: float = 0
 var currentSailAngle: float = 0
 
 @onready var windCurve = $WindCurve
-var windProjection: float
+var effectiveWind: float
 
 #region External Methods
 func calculate_wind_projection(wind: Vector3) -> void:
+	# calculate the max possible wind according to the boats forward
 	var angle = -wind.angle_to(basis.z)
-	windProjection = windCurve.get_max_speed(-angle) * wind.length()
-	print("angle: %s\trelative wind: %s" % [-angle, windProjection])
+	var clamped_angle = windCurve.clamp_wind_angle(-angle)
+	var maxEffectiveWind = windCurve.get_max_speed(clamped_angle) * wind.length()
 	
-	sailMesh.distort_sail(windProjection)
-	flag_mesh.distort_flag(wind)
+	# calculate the effective wind according to the sail direction
+	var idealSailWeight = inverse_lerp(PI/6, PI, clamped_angle)
+	var idealSailAngle = lerp(0, 90, idealSailWeight)
+	#var localSailAngle = sailRoot.basis.z.angle_to(basis.z)
+	var sailAngleEffectiveness
+	if idealSailAngle < currentSailAngle:
+		sailAngleEffectiveness = idealSailAngle / currentSailAngle
+	else:
+		sailAngleEffectiveness = currentSailAngle / idealSailAngle
+	effectiveWind = maxEffectiveWind * sailAngleEffectiveness
+	
+	print("max effective: %s" % maxEffectiveWind)
+	print("ideal angle: %s\tcurrent angle: %s" % [idealSailAngle, currentSailAngle])
+	#print("angle: %s\tclamp: %s\trelative wind: %s" % 
+		#[-angle, clamped_angle, effectiveWind]
+	#)
+	
+	sailMesh.distort_sail(effectiveWind)
+	flagMesh.distort_flag(wind)
 #endregion
 
 #region Included Methods
@@ -86,5 +104,5 @@ func kinematics(delta: float) -> void:
 	apply_torque(Vector3.DOWN * currentRudderAngle * delta * rudderEfficiency)
 	
 	# move forward
-	apply_central_force(-global_basis.z * windProjection * delta * sailEfficiency)
+	apply_central_force(-global_basis.z * effectiveWind * delta * sailEfficiency)
 #endregion

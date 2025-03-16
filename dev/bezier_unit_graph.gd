@@ -34,4 +34,3 @@ func track_wind(delta: float) -> void:
 			increasing = true 
 	
 	var speed = wind_curve.get_max_speed(angle)
-	print("%s -> %s" % [angle, speed])

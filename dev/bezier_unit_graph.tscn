@@ -1,17 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpfgjmefdvlqf"]
 
-[ext_resource type="Script" path="res://dev/bezier_unit_graph.gd" id="1_6k0sx"]
+[ext_resource type="Script" uid="uid://8yn5r3h37hwh" path="res://dev/bezier_unit_graph.gd" id="1_6k0sx"]
 [ext_resource type="PackedScene" uid="uid://caplqjcoksbvr" path="res://dev/wind_curve.tscn" id="2_h8c23"]
 [ext_resource type="PackedScene" uid="uid://cr4a6rw65h84o" path="res://dev/circle_path.tscn" id="2_lcobg"]
 
 [node name="BezierUnitGraph" type="Node2D"]
-position = Vector2(538, 327)
 script = ExtResource("1_6k0sx")
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 150, 0)
+[node name="IntersectLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, -200)
 width = 2.0
-default_color = Color(1, 1, 1, 0.133333)
+default_color = Color(0.14, 0.398, 1, 1)
 
 [node name="Line2D2" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 30, -60)
@@ -24,7 +23,7 @@ width = 2.0
 default_color = Color(1, 1, 1, 0.133333)
 
 [node name="Line2D3" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, -60)
+points = PackedVector2Array(0, 0, 70, 0)
 width = 2.0
 default_color = Color(1, 1, 1, 0.133333)
 

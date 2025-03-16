@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjq22l0ukevnd"]
 
-[ext_resource type="Script" path="res://boat.gd" id="1_i3k2c"]
+[ext_resource type="Script" uid="uid://3fryqyluds0" path="res://boat.gd" id="1_i3k2c"]
 [ext_resource type="PackedScene" uid="uid://2jgpjk614sri" path="res://boat/sail_mesh.tscn" id="2_am1mg"]
 [ext_resource type="PackedScene" uid="uid://bpc6rcc3klp3o" path="res://camera.tscn" id="2_fiwv8"]
 [ext_resource type="PackedScene" uid="uid://b5rkdwcgw6he2" path="res://boat/flag_mesh.tscn" id="2_wkujm"]
