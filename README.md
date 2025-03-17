@@ -30,6 +30,7 @@ A simulation to show how it _feels_ to sail a boat.
 - <https://sailing-blog.nauticed.org/wp-content/uploads/2017/09/CatamaranPolarPlot.png>
 - <https://www.wikihow.com/images/thumb/e/e5/Sail-a-Boat-Step-3-Version-3.jpg/v4-460px-Sail-a-Boat-Step-3-Version-3.jpg>
 - <https://upload.wikimedia.org/wikipedia/commons/0/0b/Sunfish_rigged_for_sailing.jpg>
+- <https://www.sailingworld.com/uploads/2021/09/screen_shot_2017-01-13_at_9.22.43_am_2.jpg>
 - sculling: when in no wind zone, can flap to "paddle" forward a bit or turn
 - jibe: when the sail flips sides of the boat really fast
 - windward: side of the wind
@@ -40,11 +41,12 @@ A simulation to show how it _feels_ to sail a boat.
 - when docking (leeward is better)
   - against the wind, must U-turn into wind
   - with wind, zig-zag
+- a proper simulation needs a propper sail (a redesign is in order)
 
 ## User Stories
 
 - [x] control the rudder with left/right bumpers
 - [x] control the sail with the left stick
 - [x] adapt to the wind for effectiveness
-- [ ] read the wind using the flag
-- [ ] see the sail bend according the wind projection
+- [x] see the sail bend according the wind projection
+- [x] read the wind using the flag

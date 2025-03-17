@@ -13,9 +13,9 @@ var shader:Shader = preload("res://boat/sail_mesh.gdshader")
 var mesh_generator = MeshGenerator.new()
 
 
-func distort_sail(magnitude: float) -> void:
-	print("distortion: ", magnitude * wind_effectiveness)
-	material.set_shader_parameter("x_amplitude", magnitude * wind_effectiveness)
+func distort_sail(wind: Vector3) -> void:
+	var dir = 1 if wind.dot(global_basis.x) >= 0.0 else -1
+	material.set_shader_parameter("x_amplitude", dir * wind.length() * wind_effectiveness)
 
 
 func _ready():

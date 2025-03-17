@@ -14,9 +14,8 @@ curve = SubResource("Curve2D_f0q3d")
 script = ExtResource("1_nm64a")
 
 [node name="Speed" type="PathFollow2D" parent="."]
-position = Vector2(136.307, -27.6957)
-rotation = 1.17708
-progress = 137.657
+position = Vector2(22, -44)
+rotation = -0.168832
 
 [node name="Sprite2D" type="Sprite2D" parent="Speed"]
 scale = Vector2(0.145, 0.145)
