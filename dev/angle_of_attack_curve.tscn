@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx5njnluro0pv"]
+
+[ext_resource type="Script" uid="uid://8hfbg2i8ul55" path="res://dev/angle_of_attack_curve.gd" id="1_qafiw"]
+
+[sub_resource type="Curve2D" id="Curve2D_yba21"]
+_data = {
+"points": PackedVector2Array(-22.3564, 0.791379, 22.3564, -0.791379, 0, 0, -5.3418, 4.74827, 5.3418, -4.74827, 16, -15, -2.57198, 3.16551, 2.57198, -3.16551, 22, -50, -4.94611, 1.7806, 4.94611, -1.7806, 26, -54, -7.12241, 0.593534, 7.12241, -0.593534, 35, -55, -6.92456, -4.15474, 6.92456, 4.15474, 56, -45, -10.2879, -9.89223, 10.2879, 9.89223, 71, -33, -9.49654, -14.047, 9.49654, 14.047, 90, -10)
+}
+point_count = 8
+
+[node name="AngleOfAttackCurve" type="Path2D"]
+curve = SubResource("Curve2D_yba21")
+script = ExtResource("1_qafiw")
+
+[node name="Follower" type="PathFollow2D" parent="."]
+rotation = -0.0353835

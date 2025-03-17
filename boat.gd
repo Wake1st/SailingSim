@@ -15,26 +15,34 @@ const RUDDER_DAMPED_FLOOR: float = 0.000001
 @export var rudderEfficiency: float = 48
 @export var sailEfficiency: float = 64
 
-@onready var rudderRoot = %RudderRoot
-@onready var sailRoot = %SailRoot
+@onready var rudderRoot:Node3D = %RudderRoot
+@onready var sailRoot:Node3D = %SailRoot
 
-@onready var sailMesh = %SailMesh
-@onready var flag_mesh = %FlagMesh
+@onready var sailMesh:SailMesh = %SailMesh
+@onready var flagMesh:FlagMesh = %FlagMesh
 
 var currentRudderAngle: float = 0
 var currentSailAngle: float = 0
 
-@onready var windCurve = $WindCurve
-var windProjection: float
+@onready var windCurve: WindCurve = $WindCurve
+var effectiveWind: float
+
+@onready var aoaCurve: AngleOfAttackCurve = $AngleOfAttackCurve
+
 
 #region External Methods
 func calculate_wind_projection(wind: Vector3) -> void:
+	# calculate the max possible wind according to the boats forward
 	var angle = -wind.angle_to(basis.z)
-	windProjection = windCurve.get_max_speed(-angle) * wind.length()
-	print("angle: %s\trelative wind: %s" % [-angle, windProjection])
+	var maxEffectiveWind = windCurve.get_max_speed(-angle) * wind.length()
 	
-	sailMesh.distort_sail(windProjection)
-	flag_mesh.distort_flag(wind)
+	# calculate the effective wind according to the sail direction
+	var relativeSailAngle = wind.angle_to(sailRoot.global_basis.z)
+	var sailAngleEffectiveness = aoaCurve.get_sail_force(relativeSailAngle)
+	effectiveWind = maxEffectiveWind * sailAngleEffectiveness
+	
+	sailMesh.distort_sail(wind.normalized() * effectiveWind)
+	flagMesh.distort_flag(wind)
 #endregion
 
 #region Included Methods
@@ -83,8 +91,10 @@ func rotate_sail(deltaAngle: float) -> void:
 #region Kinematics
 func kinematics(delta: float) -> void:
 	# rotate boat
-	apply_torque(Vector3.DOWN * currentRudderAngle * delta * rudderEfficiency)
+	var speed_factor = linear_velocity.length() * 0.1
+	print("vel: %s" % linear_velocity)
+	apply_torque(Vector3.DOWN * currentRudderAngle * delta * rudderEfficiency * speed_factor)
 	
 	# move forward
-	apply_central_force(-global_basis.z * windProjection * delta * sailEfficiency)
+	apply_central_force(-global_basis.z * effectiveWind * delta * sailEfficiency)
 #endregion

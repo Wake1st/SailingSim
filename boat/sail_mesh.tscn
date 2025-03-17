@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://2jgpjk614sri"]
 
-[ext_resource type="Script" path="res://boat/sail_mesh.gd" id="1_ipgde"]
-[ext_resource type="Script" path="res://models/mesh_data.gd" id="2_vup6e"]
+[ext_resource type="Script" uid="uid://d4gwnpr6xex5e" path="res://boat/sail_mesh.gd" id="1_ipgde"]
+[ext_resource type="Script" uid="uid://dv7d4765nhov" path="res://models/mesh_data.gd" id="2_vup6e"]
 
 [sub_resource type="Resource" id="Resource_p2wqk"]
 script = ExtResource("2_vup6e")

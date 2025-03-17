@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ojn03lmm4c7v"]
 
 [ext_resource type="PackedScene" uid="uid://cjq22l0ukevnd" path="res://boat.tscn" id="1_b6gpj"]
-[ext_resource type="Script" path="res://level.gd" id="1_xn5u8"]
+[ext_resource type="Script" uid="uid://uap0gy13rppg" path="res://level.gd" id="1_xn5u8"]
 [ext_resource type="PackedScene" uid="uid://bq8iluomepwt5" path="res://wind.tscn" id="2_acw76"]
 [ext_resource type="PackedScene" uid="uid://cg2qamtu348u0" path="res://buoy.tscn" id="4_ixryb"]
 

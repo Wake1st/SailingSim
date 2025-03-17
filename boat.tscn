@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjq22l0ukevnd"]
+[gd_scene load_steps=13 format=3 uid="uid://cjq22l0ukevnd"]
 
-[ext_resource type="Script" path="res://boat.gd" id="1_i3k2c"]
+[ext_resource type="Script" uid="uid://3fryqyluds0" path="res://boat.gd" id="1_i3k2c"]
 [ext_resource type="PackedScene" uid="uid://2jgpjk614sri" path="res://boat/sail_mesh.tscn" id="2_am1mg"]
 [ext_resource type="PackedScene" uid="uid://bpc6rcc3klp3o" path="res://camera.tscn" id="2_fiwv8"]
 [ext_resource type="PackedScene" uid="uid://b5rkdwcgw6he2" path="res://boat/flag_mesh.tscn" id="2_wkujm"]
 [ext_resource type="PackedScene" uid="uid://caplqjcoksbvr" path="res://dev/wind_curve.tscn" id="3_pm528"]
+[ext_resource type="PackedScene" uid="uid://bx5njnluro0pv" path="res://dev/angle_of_attack_curve.tscn" id="6_jdgnk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eoteh"]
 friction = 0.0
@@ -34,9 +35,11 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_eoteh")
 gravity_scale = 0.0
 can_sleep = false
-linear_damp = 0.2
-angular_damp = 1.0
+linear_damp = 0.04
+angular_damp = 0.1
 script = ExtResource("1_i3k2c")
+rudderEfficiency = 14.0
+sailEfficiency = 18.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -78,3 +81,5 @@ mesh = SubResource("BoxMesh_yq470")
 
 [node name="WindCurve" parent="." instance=ExtResource("3_pm528")]
 visible = false
+
+[node name="AngleOfAttackCurve" parent="." instance=ExtResource("6_jdgnk")]

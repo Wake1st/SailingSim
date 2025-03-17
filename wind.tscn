@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bq8iluomepwt5"]
 
-[ext_resource type="Script" path="res://wind.gd" id="1_kw2px"]
+[ext_resource type="Script" uid="uid://diyctuetsby16" path="res://wind.gd" id="1_kw2px"]
 
 [node name="Wind" type="Node3D"]
 script = ExtResource("1_kw2px")
